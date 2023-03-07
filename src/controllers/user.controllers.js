@@ -1,19 +1,21 @@
-const jwt = require('jsonwebtoken');
 const userService = require('../services/user.service');
-
-const secret = process.env.JWT_SECRET;
-const jwtConfig = {
-    expiresIn: '7d',
-    algorithm: 'HS256',
-};
+const { createToken } = require('../utils/authFunctions');
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-    const user = await userService.login(email, password);
+    const { dataValues: { id } } = await userService.login(email, password);
+    // console.log('aquiiii agora', user);
+    const token = createToken(id);
 
-    const token = jwt.sign({ data: { userId: user.id } }, secret, jwtConfig);
     res.status(200).json({ token });
 };
+
+// const createUser = async (req, res) => {
+//     const { displayName, email, password, image} = req.body;
+//     const newUser = await userService.createUser(displayName, email, password, image);
+
+//     res.status(201).json({ });
+// };
 
 module.exports = {
     login,
