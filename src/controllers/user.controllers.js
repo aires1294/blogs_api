@@ -10,7 +10,10 @@ const jwtConfig = {
 const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await userService.login(email, password);
-
+    // console.log(user);
+    if (!email || !password) {
+        return res.status(400).send({ message: 'Some required fields are missing' });
+    }
     if (!user) {
         return res.status(400).send({ message: 'Invalid fields' });
     }
