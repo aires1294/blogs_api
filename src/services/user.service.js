@@ -6,8 +6,12 @@ const login = async (email, password) => {
 };
 
 const createUser = async (displayName, email, password, image) => {
-    const newUser = await User.create({ displayName, email, password, image });
-    return newUser;
+    try {
+        const newUser = await User.create({ displayName, email, password, image });
+        return newUser;
+    } catch (e) {
+        return { type: 'error', message: 'User already registered' };
+    }
 };
 
 module.exports = {

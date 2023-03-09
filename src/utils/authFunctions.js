@@ -11,6 +11,18 @@ const createToken = (id) => {
     return token;
 };
 
+const validateToken = (req, res, next) => {
+   const token = req.header('authorization');
+   try {
+    const verifyToken = jwt.verify(token, secret);
+    req.body.verifyToken = verifyToken; 
+    next();
+   } catch (e) {
+    return res.status(400).json({ message: 'Token expired or invalid' });
+   }   
+};
+
 module.exports = {
     createToken,
+    validateToken,
 };
