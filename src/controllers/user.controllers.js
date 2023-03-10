@@ -34,7 +34,7 @@ const getAllUsers = async (_req, res) => {
 
 const getUserById = async (req, res) => {
     try {
-        const users = await userService.getAllUsers();
+        const users = await userService.getUserById();
         // console.log('flamengo', users);
         if (!users) throw Error;
         res.status(200).json(users);
