@@ -13,6 +13,7 @@ const login = async (req, res) => {
 const createUser = async (req, res) => {
     const { displayName, email, password, image } = req.body;
     const newUser = await userService.createUser(displayName, email, password, image);
+    console.log('flamengo', newUser);
     if (newUser.type) {
         return res.status(409).json({ message: newUser.message });
     }
