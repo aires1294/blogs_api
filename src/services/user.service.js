@@ -23,8 +23,19 @@ const getAllUsers = async () => {
     });
 };
 
+const getUserById = async (id) => {
+    const user = await User.findByPk(id);
+    // console.log('aquiiiiii', user);
+    return user.map((userId) => {
+        const { password: _, ...userById } = userId.dataValues; 
+        // console.log('flamengooooo IDDDDd', userById);
+        return userById;
+    });
+};
+
 module.exports = {
     login,
     createUser,
     getAllUsers,
+    getUserById,
 };

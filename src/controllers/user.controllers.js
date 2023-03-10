@@ -32,8 +32,20 @@ const getAllUsers = async (_req, res) => {
     }
 };
 
+const getUserById = async (req, res) => {
+    try {
+        const users = await userService.getAllUsers();
+        // console.log('flamengo', users);
+        if (!users) throw Error;
+        res.status(200).json(users);
+    } catch (err) {
+        res.status(404).json({ message: 'User does not exist' });
+    }
+};
+
 module.exports = {
     login,
     createUser,
     getAllUsers,
+    getUserById,
 };
