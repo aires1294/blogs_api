@@ -25,6 +25,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
     const user = await User.findByPk(id);
+    console.log('aqui aaaaaaaaa', user);
     const { password: _, ...userById } = user.dataValues; 
     return userById;
 };
