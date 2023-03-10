@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/user.controllers');
+const { validateToken } = require('../utils/authFunctions');
 const { 
     validateDisplayName, 
     validateEmail,
@@ -13,5 +14,7 @@ router.post('/',
     validateEmail, 
     validatePassword, 
     userController.createUser);
+
+router.get('/', validateToken, userController.getAllUsers);
 
 module.exports = router;

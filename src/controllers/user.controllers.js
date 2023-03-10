@@ -21,7 +21,19 @@ const createUser = async (req, res) => {
     return res.status(201).json({ token });
 };
 
+const getAllUsers = async (_req, res) => {
+    try {
+        const users = await userService.getAllUsers();
+        // console.log('flamengo', users);
+        if (!users) throw Error;
+        res.status(200).json(users);
+    } catch (err) {
+        res.status(500).json({ message: 'DB does not have user' });
+    }
+};
+
 module.exports = {
     login,
     createUser,
+    getAllUsers,
 };
