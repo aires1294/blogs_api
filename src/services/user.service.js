@@ -14,7 +14,14 @@ const createUser = async (displayName, email, password, image) => {
     }
 };
 
-const getAllUsers = () => User.findAll();
+const getAllUsers = async () => {
+    const users = await User.findAll();
+    return users.map((user) => {
+    const { password: _, ...userWithNoPassword } = user.dataValues; 
+    // console.log('aqui', userWithNoPassword);
+    return userWithNoPassword;
+    });
+};
 
 module.exports = {
     login,
