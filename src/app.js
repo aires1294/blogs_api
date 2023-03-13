@@ -19,11 +19,13 @@ app.use(express.json());
 const loginRouter = require('./Router/login.router');
 const userRouter = require('./Router/user.router');
 const categoryRouter = require('./Router/category.router');
+const blogPostRouter = require('./Router/blogPost.router');
 // const app = express();
 
 app.use(express.json());
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
 app.use('/categories', categoryRouter);
+app.use('/post', blogPostRouter);
 
 module.exports = app;
