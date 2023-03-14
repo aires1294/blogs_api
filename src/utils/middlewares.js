@@ -43,10 +43,22 @@ const validateEmail = async (req, res, next) => {
     const { password } = req.body;
     if (password.length < 6) {
         return res.status(400)
-        .json({ message: '"password" length must be at least 6 characters long' });
+            .json({ message: '"password" length must be at least 6 characters long' });
     }
     next();
 };
+
+// const validateCategoryIds = async (req, res, next) => {
+//     const { categoryIds } = req.body;
+//     const validate = await userService.findAllCategoryIds(categoryIds);
+//     if (categoryIds.length !== validate.count) {
+//         return res.status(400).json({ message: 'one or more "categoryIds" not found' });
+//     }
+//     if (categoryIds !== validate.rows) {
+//         return res.status(400).json({ message: 'one or more "categoryIds" not found' });
+//     }
+//     next();
+// };
 
 module.exports = {
     validateLoginBody,
@@ -54,4 +66,5 @@ module.exports = {
     validateDisplayName,
     validateEmail,
     validatePassword,
+    // validateCategoryIds,
 };
