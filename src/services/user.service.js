@@ -22,6 +22,14 @@ const getAllUsers = async () => {
     return userWithNoPassword;
     });
 };
+// OUTRA MANEIRA DE FAZER 
+// const getAllUsers = async () => {
+//     const users = await User.findAll({
+//       attributes: { exclude: ['password'] },
+//     });
+  
+//     return { type: null, message: users };
+//   };
 
 const getUserById = async (id) => {
     const user = await User.findByPk(id);

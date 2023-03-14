@@ -29,6 +29,15 @@ const getAllPosts = async () => {
     return { type: null, message: user };
 };
 
+const getPostById = async (id) => {
+    try {
+        const postById = await BlogPost.findByPk(id, include);
+        return { message: postById };
+    } catch (e) {
+        return { type: 'error', message: 'Post does not exist' };
+    }            
+};
+
 // const findAllCategoryIds = async (categoryIds) => {
 //     const user = await BlogPost.findAndCountAll({ where: { categoryIds } });
 //     return user;
@@ -37,5 +46,6 @@ const getAllPosts = async () => {
 module.exports = {
     createPost,
     getAllPosts,
+    getPostById,
     // findAllCategoryIds,
 };
