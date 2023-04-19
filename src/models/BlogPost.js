@@ -27,12 +27,6 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'userId',
             as: 'user',
         });
-    // BlogPost.associate = (models) => {
-    //     BlogPost.hasMany(models.PostCategory, {
-    //         foreignKey: 'post_id',
-    //         as: 'posts_categories',
-    //     })
-    // }
     };
 
     return BlogPost;
